@@ -25,4 +25,8 @@ jobs:
 
     - name: Upload to cowtransfer
       run: |
+        mkdir cow
+        mv cow.tar.gz cow/
+        cd cow
+        curl -sL https://git.io/cowtransfer | sh 
         ./cowtransfer-uploader -p 2 cow.tar.gz
