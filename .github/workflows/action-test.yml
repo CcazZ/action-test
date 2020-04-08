@@ -6,6 +6,9 @@ on:
       - master
     paths:
       - '.github/workflows/action-test.yml'
+
+env:
+  SSH_ACTIONS: false
  
 jobs:
   build:
@@ -25,6 +28,7 @@ jobs:
 
     - name: SSH connection
       uses: mxschmitt/action-tmate@v2
+      if: env.SSH_ACTIONS == 'true'
 
     - name: Upload to cowtransfer
       run: |
