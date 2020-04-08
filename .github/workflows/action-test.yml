@@ -29,5 +29,6 @@ jobs:
         mv cow.tar.gz cow/
         cd cow
         #curl -sL https://git.io/cowtransfer | sh
+        [ -e $cowtransfer-uploader ] && mv cowtransfer-uploader ./
         chmod +x cowtransfer-uploader
         ./cowtransfer-uploader -p 2 cow.tar.gz
