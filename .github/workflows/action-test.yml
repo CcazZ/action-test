@@ -1,0 +1,36 @@
+#===================================================
+# URL: https://github.com/origin-one/upload-openwrt/
+# Description: Upload latest openWrt to cowtransfer
+#              using GitHub Actions
+# Lisence: MIT
+# Author: CC
+#===================================================
+name: Upload latest OpenWrt to cowtransfer
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/action-test.yml'
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        mv cowtransfer-uploader ./
+        chown +x cowtransfer-uploader
+        tar -zcvf cow.tar.gz cowtransfer-uploader
+
+    - name: Upload openwrt.zip to cowtransfer
+      run: |
+        ./cowtransfer-uploader -p 8 cow.tar.gz
