@@ -20,10 +20,9 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        mv cowtransfer-uploader ./
         chown +x cowtransfer-uploader
         tar -zcvf cow.tar.gz cowtransfer-uploader
 
-    - name: Upload openwrt.zip to cowtransfer
+    - name: Upload to cowtransfer
       run: |
-        ./cowtransfer-uploader -p 8 cow.tar.gz
+        ./cowtransfer-uploader -p 2 cow.tar.gz
