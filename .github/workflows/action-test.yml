@@ -20,7 +20,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        chown +x cowtransfer-uploader
+        chmod +x cowtransfer-uploader
         tar -zcvf cow.tar.gz cowtransfer-uploader
 
     - name: Upload to cowtransfer
